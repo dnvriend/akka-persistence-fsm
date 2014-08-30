@@ -12,6 +12,11 @@ object Counter {
   case object GetState
 }
 
+/**
+ * The Counter 'Processor' type, replays all Persistent messages, so when
+ * you have a whole lot of DoCount messages, this can take a while.
+ * See the 'CounterSnapshot' class for the PersistentActor version
+ */
 class Counter extends Processor with FSM[String, Data] with ActorLogging {
 
   startWith("idle", CounterState())
